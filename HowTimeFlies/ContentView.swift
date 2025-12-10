@@ -63,7 +63,7 @@ struct IntroView: View {
     @State private var currentIndex: Int = 0
 
     let images = ["us1", "us2", "us3","us4"
-    ,"us5","us6","us7","us8","us9","us10"] // Make sure these exist in Assets
+    ,"us5","us6","us7","us8","us9","us10","us11","us12","us13","us14"] // Make sure these exist in Assets
 
     var body: some View {
         VStack(spacing: 24) {
