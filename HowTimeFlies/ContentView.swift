@@ -1,65 +1,80 @@
 import SwiftUI
 
+enum AppScreen {
+    case intro
+    case valentineProposal
+    case itinerary
+    case reasons
+}
+
 struct ContentView: View {
-    @State private var hasStarted = false
+    @State private var currentScreen: AppScreen = .intro
 
     var body: some View {
         ZStack {
-            // Midnight Romance background
-            ZStack {
-                // Base deep navy gradient
-                LinearGradient(
-                    colors: [
-                        Color(red: 0.08, green: 0.09, blue: 0.18),  // Deep midnight
-                        Color(red: 0.12, green: 0.08, blue: 0.16),  // Dark plum
-                        Color(red: 0.22, green: 0.08, blue: 0.14)   // Rich burgundy
-                    ],
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
-                )
-                
-                // Subtle warm glow at the bottom
-                RadialGradient(
-                    colors: [
-                        Color(red: 0.35, green: 0.12, blue: 0.18).opacity(0.6),
-                        Color.clear
-                    ],
-                    center: .bottomTrailing,
-                    startRadius: 20,
-                    endRadius: 400
-                )
-                
-                // Soft ambient highlight
-                RadialGradient(
-                    colors: [
-                        Color(red: 0.25, green: 0.15, blue: 0.25).opacity(0.4),
-                        Color.clear
-                    ],
-                    center: .topLeading,
-                    startRadius: 50,
-                    endRadius: 350
-                )
-                
-                // Floating hearts layer
-                BackgroundHeartsView()
-            }
-            .ignoresSafeArea()
+            // Midnight Romance background — only shown on dark-themed screens
+            if currentScreen == .intro || currentScreen == .reasons {
+                ZStack {
+                    // Base deep navy gradient
+                    LinearGradient(
+                        colors: [
+                            Color(red: 0.08, green: 0.09, blue: 0.18),  // Deep midnight
+                            Color(red: 0.12, green: 0.08, blue: 0.16),  // Dark plum
+                            Color(red: 0.22, green: 0.08, blue: 0.14)   // Rich burgundy
+                        ],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    )
 
-            if hasStarted {
-                // Pass binding down so ReasonsView can go "back"
-                ReasonsView(hasStarted: $hasStarted)
-                    .transition(.move(edge: .trailing).combined(with: .opacity))
-            } else {
-                IntroView(hasStarted: $hasStarted)
+                    // Subtle warm glow at the bottom
+                    RadialGradient(
+                        colors: [
+                            Color(red: 0.35, green: 0.12, blue: 0.18).opacity(0.6),
+                            Color.clear
+                        ],
+                        center: .bottomTrailing,
+                        startRadius: 20,
+                        endRadius: 400
+                    )
+
+                    // Soft ambient highlight
+                    RadialGradient(
+                        colors: [
+                            Color(red: 0.25, green: 0.15, blue: 0.25).opacity(0.4),
+                            Color.clear
+                        ],
+                        center: .topLeading,
+                        startRadius: 50,
+                        endRadius: 350
+                    )
+
+                    // Floating hearts layer
+                    BackgroundHeartsView()
+                }
+                .ignoresSafeArea()
+            }
+
+            switch currentScreen {
+            case .intro:
+                IntroView(currentScreen: $currentScreen)
                     .transition(.move(edge: .leading).combined(with: .opacity))
+            case .valentineProposal:
+                ValentineProposalView(currentScreen: $currentScreen)
+                    .transition(.move(edge: .trailing).combined(with: .opacity))
+            case .itinerary:
+                ItineraryView(currentScreen: $currentScreen)
+                    .transition(.move(edge: .trailing).combined(with: .opacity))
+            case .reasons:
+                ReasonsView(currentScreen: $currentScreen)
+                    .transition(.move(edge: .trailing).combined(with: .opacity))
             }
         }
-        .animation(.spring(response: 0.5, dampingFraction: 0.85), value: hasStarted)
+        .animation(.spring(response: 0.5, dampingFraction: 0.85), value: currentScreen)
     }
 }
 
 struct IntroView: View {
-    @Binding var hasStarted: Bool
+    @Binding var currentScreen: AppScreen
     @State private var currentIndex: Int = 0
 
     let images = ["us1", "us2", "us3","us4"
@@ -70,18 +85,18 @@ struct IntroView: View {
             Spacer(minLength: 20)
 
             VStack(spacing: 8) {
-                Text("Its Anniversary Time")
+                Text("Happy Valentine's Day")
                     .font(.title)
                     .fontWeight(.bold)
                     .multilineTextAlignment(.center)
                     .foregroundColor(.white)
 
-                Text("Commemorating 2 years of Fun and Problems")
+                Text("A Special Weekend Awaits Us")
                     .font(.subheadline)
                     .multilineTextAlignment(.center)
                     .foregroundColor(.white.opacity(0.85))
 
-                Text("December 10, Where it all came together")
+                Text("February 14, 2026")
                     .font(.footnote)
                     .foregroundColor(.white.opacity(0.7))
             }
@@ -127,9 +142,9 @@ struct IntroView: View {
             Spacer()
 
             Button {
-                hasStarted = true
+                currentScreen = .valentineProposal
             } label: {
-                Text("Lets Head Inside 💌")
+                Text("Open Your Valentine 💌")
                     .font(.headline)
                     .padding(.horizontal, 40)
                     .padding(.vertical, 14)
@@ -145,7 +160,7 @@ struct IntroView: View {
 }
 
 struct ReasonsView: View {
-    @Binding var hasStarted: Bool
+    @Binding var currentScreen: AppScreen
     
     @State private var currentReason: LoveReason = loveReasons.randomElement()
         ?? LoveReason(text: "You are loved.", isSecret: false)
@@ -162,7 +177,7 @@ struct ReasonsView: View {
             HStack {
                 Button {
                     withAnimation(.spring()) {
-                        hasStarted = false
+                        currentScreen = .itinerary
                     }
                 } label: {
                     HStack(spacing: 6) {
