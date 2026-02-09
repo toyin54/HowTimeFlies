@@ -24,5 +24,8 @@ let loveReasons: [LoveReason] = [
     LoveReason(text: "The way you do that thing 😩.", isSecret: false),
     LoveReason(text: "Your ever constant reminders of how much you like Nella's Pizza.", isSecret: false),
     LoveReason(text: "Your smile is still my favorite part of any day.", isSecret: true),
-    LoveReason(text: "You’ve shown me a version of love I didn’t know I needed.", isSecret: true) // secret
+    LoveReason(text: "You’ve shown me a version of love I didn’t know I needed.", isSecret: true),
+    LoveReason(text: "I need the sloppiest evryday this weekend.", isSecret: true),// secret
+    LoveReason(text: "I think it’s beautiful the way you sparkle when you talk aboutthe things you love.", isSecret: false),
+    LoveReason(text: "Depression is being colorblind and constantly told how colorful the world is. You will see!", isSecret: <#T##Bool#>)
 ]
