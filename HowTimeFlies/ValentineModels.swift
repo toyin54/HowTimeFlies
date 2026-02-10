@@ -50,7 +50,7 @@ let valentineItinerary: [ItineraryDay] = [
                 title: "Evening Stroll",
                 subtitle: "Walk Around the Park",
                 description: "A romantic walk together under the night sky. The city lights, the quiet paths, and just the two of us.",
-                location: "Central Park, New York, NY",
+                location: "Down The Block",
                 time: "9:30 PM",
                 funFacts: [
                     "Central Park has over 9,000 benches — we should find our favorite.",
