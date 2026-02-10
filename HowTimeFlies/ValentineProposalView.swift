@@ -121,6 +121,7 @@ struct ValentineProposalView: View {
     @State private var roseScale: CGFloat = 0.0
     @State private var yesPressed = false
     @State private var showConfetti = false
+    @State private var showNextButton = false
     @State private var noButtonOffset: CGSize = .zero
     @State private var noAttempts = 0
     @State private var typewriterTaskID = UUID()
@@ -280,13 +281,18 @@ struct ValentineProposalView: View {
                     if !yesPressed {
                         VStack(spacing: 16) {
                             Button {
+                                // Cancel the typewriter and show full text immediately
+                                typewriterTaskID = UUID()
+                                displayedText = kindWords
+
                                 withAnimation(.spring()) {
                                     yesPressed = true
                                     showConfetti = true
                                 }
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                                // Show the next button after a brief moment
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                                     withAnimation(.spring()) {
-                                        currentScreen = .itinerary
+                                        showNextButton = true
                                     }
                                 }
                             } label: {
@@ -338,14 +344,40 @@ struct ValentineProposalView: View {
                         }
                         .padding(.horizontal, 40)
                     } else {
-                        VStack(spacing: 12) {
+                        VStack(spacing: 20) {
                             Text("I knew you would! 🥰")
                                 .font(.system(size: 22, weight: .heavy, design: .rounded))
                                 .foregroundColor(hotCoral)
 
-                            Text("Let me show you what I have planned...")
-                                .font(.system(size: 14, weight: .medium, design: .rounded))
-                                .foregroundColor(mutedText)
+                            if showNextButton {
+                                Button {
+                                    withAnimation(.spring()) {
+                                        currentScreen = .itinerary
+                                    }
+                                } label: {
+                                    HStack(spacing: 8) {
+                                        Text("Here's What Comes Next")
+                                            .font(.system(size: 17, weight: .bold, design: .rounded))
+                                        Image(systemName: "arrow.right")
+                                            .font(.system(size: 14, weight: .bold))
+                                    }
+                                    .foregroundColor(.white)
+                                    .padding(.horizontal, 32)
+                                    .padding(.vertical, 16)
+                                    .background(
+                                        Capsule()
+                                            .fill(
+                                                LinearGradient(
+                                                    colors: [hotCoral, warmRed],
+                                                    startPoint: .topLeading,
+                                                    endPoint: .bottomTrailing
+                                                )
+                                            )
+                                    )
+                                    .shadow(color: warmRed.opacity(0.4), radius: 10, y: 5)
+                                }
+                                .transition(.scale.combined(with: .opacity))
+                            }
                         }
                         .transition(.scale.combined(with: .opacity))
                     }
@@ -354,11 +386,18 @@ struct ValentineProposalView: View {
                 }
                 .padding(.top, 16)
             }
+            .scrollIndicators(.hidden)
 
             if showConfetti {
                 ConfettiView()
                     .allowsHitTesting(false)
                     .ignoresSafeArea()
+                    .onAppear {
+                        // Dismiss confetti after animation completes
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 4.5) {
+                            showConfetti = false
+                        }
+                    }
             }
         }
     }

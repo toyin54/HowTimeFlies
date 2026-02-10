@@ -76,9 +76,9 @@ struct ContentView: View {
 struct IntroView: View {
     @Binding var currentScreen: AppScreen
     @State private var currentIndex: Int = 0
-
-    let images = ["us1", "us2", "us3","us4"
-    ,"us5","us6","us7","us8","us9","us10","us11","us12","us13","us14"] // Make sure these exist in Assets
+    @State private var images: [String] = ["us1", "us2", "us3","us4"
+    ,"us5","us6","us7","us8","us9","us10","us11","us12","us13","us14","img1","babe"] // Make sure these exist in Assets
+    @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
         VStack(spacing: 24) {
@@ -156,6 +156,16 @@ struct IntroView: View {
             .padding(.bottom, 40)
         }
         .padding(.top, 16)
+        .onAppear {
+            images.shuffle()
+            currentIndex = 0
+        }
+        .onChange(of: scenePhase) { _, newPhase in
+            if newPhase == .active {
+                images.shuffle()
+                currentIndex = 0
+            }
+        }
     }
 }
 

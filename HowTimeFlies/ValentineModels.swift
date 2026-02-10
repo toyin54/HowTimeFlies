@@ -22,7 +22,7 @@ struct ItineraryDay: Identifiable, Hashable {
     let items: [ItineraryItem]
 }
 
-let images = ["us1", "us2", "us3","us4","us5"] // Make sure these exist in Assets
+let images = ["sushi", "wuther", "pizza","us4","us5"] // Make sure these exist in Assets
 
 let valentineItinerary: [ItineraryDay] = [
     ItineraryDay(
@@ -42,8 +42,8 @@ let valentineItinerary: [ItineraryDay] = [
                     "Each seating is limited to just 10 guests for a truly intimate experience.",
                 ],
                 imageName: images[0],
-                latitude: 40.7128,
-                longitude: -74.0060
+                latitude: 41.8875396,
+                longitude: -87.6518407
             ),
             ItineraryItem(
                 icon: "figure.walk",
@@ -57,9 +57,9 @@ let valentineItinerary: [ItineraryDay] = [
                     "The park is actually bigger than the country of Monaco.",
                     "Over 230 species of birds have been spotted in the park."
                 ],
-                imageName: images[1],
-                latitude: 40.7829,
-                longitude: -73.9654
+                imageName: images[3],
+                latitude: 41.8875396,
+                longitude: -87.6518407
             ),
             ItineraryItem(
                 icon: "film",
@@ -73,9 +73,9 @@ let valentineItinerary: [ItineraryDay] = [
                     "Emily Brontë wrote the novel under the pen name Ellis Bell.",
                     "The word 'wuthering' means stormy and windy in Yorkshire dialect."
                 ],
-                imageName: images[2],
-                latitude: 40.7580,
-                longitude: -73.9855
+                imageName: images[1],
+                latitude: 41.8679,
+                longitude: -87.6326
             )
         ]
     ),
@@ -96,7 +96,7 @@ let valentineItinerary: [ItineraryDay] = [
                     "Watching movies together actually strengthens relationships , it's science.",
                     "Pajama days are scientifically proven to reduce stress (okay, maybe not, but it feels true)."
                 ],
-                imageName: images[3],
+                imageName: images[4],
                 latitude: nil,
                 longitude: nil
             ),
@@ -112,7 +112,7 @@ let valentineItinerary: [ItineraryDay] = [
                     "Americans eat approximately 3 billion pizzas every year.",
                     "Our go-to order is already memorized — that's true love."
                 ],
-                imageName: images[4],
+                imageName: images[2],
                 latitude: 40.7128,
                 longitude: -74.0060
             )
