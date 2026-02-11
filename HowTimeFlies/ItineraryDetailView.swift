@@ -268,17 +268,16 @@ struct ItineraryDetailView: View {
         icon: "fork.knife",
         title: "Sushi by Bou",
         subtitle: "12-Course Omakase Experience",
-        description: "An intimate culinary journey through the finest sushi, course by course.",
-        location: "Sushi by Bou, New York, NY",
-        time: "7:30 PM",
+        description: "An intimate culinary journey through the finest sushi, course by course. Each piece is crafted right in front of us by the chef — no menus, just trust and great fish.",
+        location: "Sushi by Bou",
+        time: "7:00 PM",
         funFacts: [
-            "Omakase means 'I'll leave it up to you'.",
-            "Each seating is limited to just 10 guests.",
-            "It started as a speakeasy-style hidden sushi bar."
+            "Omakase means 'I'll leave it up to you' the chef picks every course.",
+            "Each seating is limited to just 10 guests for a truly intimate experience.",
         ],
         imageName: nil,
-        latitude: 40.7128,
-        longitude: -74.0060
+        latitude: 41.8875396,
+        longitude: -87.6518407
     )
     ItineraryDetailView(item: sampleItem, isVisible: .constant(sampleItem))
 }

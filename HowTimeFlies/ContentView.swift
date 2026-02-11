@@ -108,9 +108,19 @@ struct IntroView: View {
                     ForEach(0..<images.count, id: \.self) { index in
                         ZStack {
                             if let uiImage = UIImage(named: images[index]) {
-                                Image(uiImage: uiImage)
-                                    .resizable()
-                                    .scaledToFill()
+                                if images[index] == "babe" {
+                                    GeometryReader { geo in
+                                        Image(uiImage: uiImage)
+                                            .resizable()
+                                            .scaledToFill()
+                                            .frame(width: geo.size.width, height: geo.size.height, alignment: .top)
+                                            .clipped()
+                                    }
+                                } else {
+                                    Image(uiImage: uiImage)
+                                        .resizable()
+                                        .scaledToFill()
+                                }
                             } else {
                                 // Fallback if image name is wrong/missing
                                 Color.white.opacity(0.2)

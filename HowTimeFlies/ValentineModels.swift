@@ -22,7 +22,7 @@ struct ItineraryDay: Identifiable, Hashable {
     let items: [ItineraryItem]
 }
 
-let images = ["sushi", "wuther", "pizza","us4","us5"] // Make sure these exist in Assets
+let images = ["sushu3", "wuther", "pizza","us4","us2"] // Make sure these exist in Assets
 
 let valentineItinerary: [ItineraryDay] = [
     ItineraryDay(
@@ -84,6 +84,25 @@ let valentineItinerary: [ItineraryDay] = [
         date: "February 21",
         tagline: "Our Chill Day",
         items: [
+            ItineraryItem(
+                icon: "camera.macro",
+                title: "Bouquet Building",
+                subtitle: "Flowers , Flowers , Flowers",
+                description: "Who doesnt love flowers, So lets make our own bouquet",
+                location: "Home Sweet Home",
+                time: "All Day",
+                funFacts: [
+                    "As a gift and solemn decoration, bouquets began to be used only at the end of the 19th century.",
+                    "The world’s smallest flower is the watermeal, which measures just 0.1mm across.",
+                    "In ancient Greece and Rome, the bride and fiancé wore a necklace of flowers around their necks, symbolizing new life, luck, and fecundity.",
+                    "Flower symbolism dates back to ancient times. For example, in ancient Greece, roses were associated with Aphrodite, the goddess of love."
+                ],
+                imageName: images[4],
+                latitude: nil,
+                longitude: nil
+                
+                
+            ),
             ItineraryItem(
                 icon: "tv",
                 title: "Movie Marathon or can make a movie 😉",
