@@ -96,7 +96,7 @@ struct IntroView: View {
                     .multilineTextAlignment(.center)
                     .foregroundColor(.white.opacity(0.85))
 
-                Text("February 14, 2026")
+                Text("February 19, 2026")
                     .font(.footnote)
                     .foregroundColor(.white.opacity(0.7))
             }

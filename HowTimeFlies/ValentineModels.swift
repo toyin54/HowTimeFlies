@@ -122,7 +122,7 @@ let valentineItinerary: [ItineraryDay] = [
             ItineraryItem(
                 icon: "takeoutbag.and.cup.and.straw",
                 title: "Nella's Pizza",
-                subtitle: "Our Favorite",
+                subtitle: "Your Favorite",
                 description: "Because no weekend is complete without Nella's. The pizza that never misses.",
                 location: "Nella's Pizza",
                 time: "LunchTime",
